@@ -177,90 +177,6 @@ public class CepRepository : ICepRepository
     }
 }
 
-public class PessoaEmailRepository : IPessoaEmailRepository
-{
-    private readonly DatabaseConfig _dbConfig;
-
-    public PessoaEmailRepository(DatabaseConfig dbConfig)
-    {
-        _dbConfig = dbConfig;
-    }
-
-    public async Task<int> CreateAsync(PessoaEmail email)
-    {
-        using var connection = new MySqlConnection(_dbConfig.ConnectionString);
-        
-        var sql = @"INSERT INTO tb_pessoa_email (pessoa, email, descricao)
-                    VALUES (@Pessoa, @Email, @Descricao);
-                    SELECT LAST_INSERT_ID();";
-        
-        var id = await connection.ExecuteScalarAsync<int>(sql, email);
-        return id;
-    }
-
-    public async Task<IEnumerable<PessoaEmail>> GetByPessoaIdAsync(int pessoaId)
-    {
-        using var connection = new MySqlConnection(_dbConfig.ConnectionString);
-        
-        var sql = "SELECT * FROM tb_pessoa_email WHERE pessoa = @PessoaId";
-        var emails = await connection.QueryAsync<PessoaEmail>(sql, new { PessoaId = pessoaId });
-        
-        return emails;
-    }
-
-    public async Task<bool> DeleteByPessoaIdAsync(int pessoaId)
-    {
-        using var connection = new MySqlConnection(_dbConfig.ConnectionString);
-        
-        var sql = "DELETE FROM tb_pessoa_email WHERE pessoa = @PessoaId";
-        var result = await connection.ExecuteAsync(sql, new { PessoaId = pessoaId });
-        
-        return result > 0;
-    }
-}
-
-public class PessoaFoneRepository : IPessoaFoneRepository
-{
-    private readonly DatabaseConfig _dbConfig;
-
-    public PessoaFoneRepository(DatabaseConfig dbConfig)
-    {
-        _dbConfig = dbConfig;
-    }
-
-    public async Task<int> CreateAsync(PessoaFone fone)
-    {
-        using var connection = new MySqlConnection(_dbConfig.ConnectionString);
-        
-        var sql = @"INSERT INTO tb_pessoa_fone (pessoa, fone, descricao)
-                    VALUES (@Pessoa, @Fone, @Descricao);
-                    SELECT LAST_INSERT_ID();";
-        
-        var id = await connection.ExecuteScalarAsync<int>(sql, fone);
-        return id;
-    }
-
-    public async Task<IEnumerable<PessoaFone>> GetByPessoaIdAsync(int pessoaId)
-    {
-        using var connection = new MySqlConnection(_dbConfig.ConnectionString);
-        
-        var sql = "SELECT * FROM tb_pessoa_fone WHERE pessoa = @PessoaId";
-        var fones = await connection.QueryAsync<PessoaFone>(sql, new { PessoaId = pessoaId });
-        
-        return fones;
-    }
-
-    public async Task<bool> DeleteByPessoaIdAsync(int pessoaId)
-    {
-        using var connection = new MySqlConnection(_dbConfig.ConnectionString);
-        
-        var sql = "DELETE FROM tb_pessoa_fone WHERE pessoa = @PessoaId";
-        var result = await connection.ExecuteAsync(sql, new { PessoaId = pessoaId });
-        
-        return result > 0;
-    }
-}
-
 public class CBORepository : ICBORepository
 {
     private readonly DatabaseConfig _dbConfig;
@@ -445,3 +361,32 @@ public class PessoaTelefoneRepository : IPessoaTelefoneRepository
     }
 }
 
+public class EstadoCivilRepository : IEstadoCivilRepository
+{
+    private readonly DatabaseConfig _dbConfig;
+
+    public EstadoCivilRepository(DatabaseConfig dbConfig)
+    {
+        _dbConfig = dbConfig;
+    }
+
+    public async Task<IEnumerable<EstadoCivil>> GetAllAsync()
+    {
+        using var connection = new MySqlConnection(_dbConfig.ConnectionString);
+        
+        var sql = "SELECT * FROM tb_EstadoCivil ORDER BY pais";
+        var EstadoCivils = await connection.QueryAsync<EstadoCivil>(sql);
+        
+        return EstadoCivils;
+    }
+
+    public async Task<EstadoCivil?> GetByIdAsync(int codigo)
+    {
+        using var connection = new MySqlConnection(_dbConfig.ConnectionString);
+        
+        var sql = "SELECT * FROM tb_estadocivil WHERE codigo = @Codigo";
+        var EstadoCivils = await connection.QueryFirstOrDefaultAsync<EstadoCivil>(sql, new { Codigo = codigo });
+        
+        return EstadoCivils;
+    }
+}
