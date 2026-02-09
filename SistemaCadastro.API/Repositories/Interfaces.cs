@@ -29,20 +29,6 @@ public interface IPessoaJuridicaRepository
     Task<bool> DeleteAsync(int pessoaId);
 }
 
-public interface IPessoaEmailRepository
-{
-    Task<int> CreateAsync(PessoaEmail email);
-    Task<IEnumerable<PessoaEmail>> GetByPessoaIdAsync(int pessoaId);
-    Task<bool> DeleteByPessoaIdAsync(int pessoaId);
-}
-
-public interface IPessoaFoneRepository
-{
-    Task<int> CreateAsync(PessoaFone fone);
-    Task<IEnumerable<PessoaFone>> GetByPessoaIdAsync(int pessoaId);
-    Task<bool> DeleteByPessoaIdAsync(int pessoaId);
-}
-
 public interface IPessoaTelefoneRepository
 {
     Task<int> CreateAsync(PessoaTelefone telefone);
@@ -104,4 +90,10 @@ public interface IPessoaEnderecoEletronicoRepository
     Task<int> CreateAsync(PessoaEnderecoEletronico endereco);
     Task<IEnumerable<PessoaEnderecoEletronico>> GetByPessoaIdAsync(int pessoaId);
     Task<bool> DeleteByPessoaIdAsync(int pessoaId);
+}
+
+public interface IEstadoCivilRepository
+{
+    Task<IEnumerable<EstadoCivil>> GetAllAsync();
+    Task<EstadoCivil?> GetByIdAsync(int codigo);
 }
