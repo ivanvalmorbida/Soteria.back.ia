@@ -193,33 +193,3 @@ public class AtividadeEconomicaController : ControllerBase
         return Ok(atividades);
     }
 }
-
-[ApiController]
-[Route("api/[controller]")]
-public class EstadoCivilController : ControllerBase
-{
-    private readonly IEstadoCivilRepository _repository;
-
-    public EstadoCivilController(IEstadoCivilRepository repository)
-    {
-        _repository = repository;
-    }
-
-    [HttpGet]
-    public async Task<ActionResult<IEnumerable<EstadoCivil>>> GetAll()
-    {
-        var estadocivil = await _repository.GetAllAsync();
-        return Ok(estadocivil);
-    }
-
-    [HttpGet("{codigo}")]
-    public async Task<ActionResult<EstadoCivil>> GetById(int codigo)
-    {
-        var estadocivil = await _repository.GetByIdAsync(codigo);
-        
-        if (estadocivil == null)
-            return NotFound();
-
-        return Ok(estadocivil);
-    }
-}

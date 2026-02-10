@@ -360,33 +360,3 @@ public class PessoaTelefoneRepository : IPessoaTelefoneRepository
         return result > 0;
     }
 }
-
-public class EstadoCivilRepository : IEstadoCivilRepository
-{
-    private readonly DatabaseConfig _dbConfig;
-
-    public EstadoCivilRepository(DatabaseConfig dbConfig)
-    {
-        _dbConfig = dbConfig;
-    }
-
-    public async Task<IEnumerable<EstadoCivil>> GetAllAsync()
-    {
-        using var connection = new MySqlConnection(_dbConfig.ConnectionString);
-        
-        var sql = "SELECT * FROM tb_EstadoCivil ORDER BY pais";
-        var EstadoCivils = await connection.QueryAsync<EstadoCivil>(sql);
-        
-        return EstadoCivils;
-    }
-
-    public async Task<EstadoCivil?> GetByIdAsync(int codigo)
-    {
-        using var connection = new MySqlConnection(_dbConfig.ConnectionString);
-        
-        var sql = "SELECT * FROM tb_estadocivil WHERE codigo = @Codigo";
-        var EstadoCivils = await connection.QueryFirstOrDefaultAsync<EstadoCivil>(sql, new { Codigo = codigo });
-        
-        return EstadoCivils;
-    }
-}
