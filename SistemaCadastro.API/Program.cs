@@ -91,6 +91,7 @@ builder.Services.AddScoped<ICBORepository, CBORepository>();
 builder.Services.AddScoped<INacionalidadeRepository, NacionalidadeRepository>();
 builder.Services.AddScoped<IAtividadeEconomicaRepository, AtividadeEconomicaRepository>();
 builder.Services.AddScoped<IUsuarioRepository, UsuarioRepository>();
+builder.Services.AddScoped<IEstadoCivilRepository, EstadoCivilRepository>();
 
 // Services
 builder.Services.AddScoped<IPessoaService, PessoaService>();

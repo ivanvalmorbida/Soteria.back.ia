@@ -91,3 +91,9 @@ public interface IPessoaEnderecoEletronicoRepository
     Task<IEnumerable<PessoaEnderecoEletronico>> GetByPessoaIdAsync(int pessoaId);
     Task<bool> DeleteByPessoaIdAsync(int pessoaId);
 }
+
+public interface IEstadoCivilRepository
+{
+    Task<IEnumerable<EstadoCivil>> GetAllAsync();
+    Task<EstadoCivil?> GetByIdAsync(int codigo);
+}
