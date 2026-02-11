@@ -60,8 +60,8 @@ public class CidadeRepository : ICidadeRepository
         
         // Nota: A tabela tb_cidade não tem relação direta com estado no schema fornecido
         // Em produção, seria necessário adicionar essa relação
-        var sql = "SELECT * FROM tb_cidade ORDER BY nome";
-        var cidades = await connection.QueryAsync<Cidade>(sql);
+        var sql = "SELECT * FROM tb_cidade where codigo in(select distinct cidade from tb_cep where estado=@Estado) ORDER BY nome";
+        var cidades = await connection.QueryAsync<Cidade>(sql, new { Estado = estadoId });
         
         return cidades;
     }
