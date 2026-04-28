@@ -199,7 +199,7 @@ public class PessoaJuridicaRepository : IPessoaJuridicaRepository
         var sql = @"UPDATE tb_pessoa_juridica 
                     SET razaosocial = @RazaoSocial, cnpj = @Cnpj, 
                         incricaoestadual = @InscricaoEstadual, atividade = @Atividade, 
-                        homepage = @Homepage, representante = @Representante
+                        representante = @Representante
                     WHERE Pessoa = @Pessoa";
         
         var result = await connection.ExecuteAsync(sql, pessoaJuridica);
