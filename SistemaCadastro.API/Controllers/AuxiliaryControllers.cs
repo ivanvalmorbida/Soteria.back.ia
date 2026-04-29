@@ -36,6 +36,25 @@ public class EstadoController : ControllerBase
 
 [ApiController]
 [Route("api/[controller]")]
+public class EnderecoController : ControllerBase
+{
+    private readonly IEnderecoRepository _repository;
+
+    public EnderecoController(IEnderecoRepository repository)
+    {
+        _repository = repository;
+    }
+
+    [HttpGet("nome/{nome}")]
+    public async Task<ActionResult<IEnumerable<Endereco>>> GetByNameAsync(string nome)
+    {
+        var cidades = await _repository.GetByNameAsync(nome);
+        return Ok(cidades);
+    }
+}
+
+[ApiController]
+[Route("api/[controller]")]
 public class CidadeController : ControllerBase
 {
     private readonly ICidadeRepository _repository;

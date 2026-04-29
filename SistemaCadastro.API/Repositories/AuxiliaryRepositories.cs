@@ -155,6 +155,14 @@ public class EnderecoRepository : IEnderecoRepository
         
         return endereco;
     }
+    public async Task<IEnumerable<Endereco>> GetByNameAsync(string nome)
+    {
+        using var connection = new MySqlConnection(_dbConfig.ConnectionString);
+        
+        var sql = "SELECT * FROM tb_endereco WHERE nome like CONCAT('%',@Nome,'%')";
+        var endereco = await connection.QueryAsync<Endereco>(sql, new { Nome = nome });
+        return endereco;
+    }
 }
 
 public class CepRepository : ICepRepository

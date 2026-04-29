@@ -59,6 +59,8 @@ public interface IEnderecoRepository
 {
     Task<int> GetOrCreateAsync(string nome);
     Task<Endereco?> GetByIdAsync(int codigo);
+    Task<IEnumerable<Endereco>> GetByNameAsync(string nome);
+    
 }
 
 public interface ICepRepository
