@@ -37,15 +37,6 @@ public class PessoaFisicaService : IPessoaFisicaService
 
     public async Task<int> CreateAsync(PessoaFisicaCreateDto dto)
     {
-        int? bairroId = null;
-        int? enderecoId = null;
-
-        if (!string.IsNullOrWhiteSpace(dto.Bairro))
-            bairroId = await _bairroRepository.GetOrCreateAsync(dto.Bairro);
-
-        if (!string.IsNullOrWhiteSpace(dto.Endereco))
-            enderecoId = await _enderecoRepository.GetOrCreateAsync(dto.Endereco);
-
         var pessoa = new Pessoa
         {
             Tipo = 'F',
@@ -53,8 +44,8 @@ public class PessoaFisicaService : IPessoaFisicaService
             Cep = dto.Cep,
             Estado = dto.Estado,
             Cidade = dto.Cidade,
-            Bairro = bairroId,
-            Endereco = enderecoId,
+            Bairro = dto.Bairro,
+            Endereco = dto.EnderecoId,
             Numero = dto.Numero,
             Complemento = dto.Complemento,
             Obs = dto.Obs
@@ -187,6 +178,7 @@ public class PessoaFisicaService : IPessoaFisicaService
             EstadoNome = estadoNome,
             Cidade = pessoa.Cidade,
             CidadeNome = cidadeNome,
+            Bairro = pessoa.Bairro,
             BairroNome = bairroNome,
             EnderecoNome = enderecoNome,
             Numero = pessoa.Numero,
@@ -218,21 +210,12 @@ public class PessoaFisicaService : IPessoaFisicaService
         if (pessoa == null)
             return false;
 
-        int? bairroId = null;
-        int? enderecoId = null;
-
-        if (!string.IsNullOrWhiteSpace(dto.Bairro))
-            bairroId = await _bairroRepository.GetOrCreateAsync(dto.Bairro);
-
-        if (!string.IsNullOrWhiteSpace(dto.Endereco))
-            enderecoId = await _enderecoRepository.GetOrCreateAsync(dto.Endereco);
-
         pessoa.Nome = dto.Nome;
         pessoa.Cep = dto.Cep;
         pessoa.Estado = dto.Estado;
         pessoa.Cidade = dto.Cidade;
-        pessoa.Bairro = bairroId;
-        pessoa.Endereco = enderecoId;
+        pessoa.Bairro = dto.Bairro;
+        pessoa.Endereco = dto.EnderecoId;
         pessoa.Numero = dto.Numero;
         pessoa.Complemento = dto.Complemento;
         pessoa.Obs = dto.Obs;

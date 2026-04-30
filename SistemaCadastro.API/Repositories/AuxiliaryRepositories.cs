@@ -109,11 +109,20 @@ public class BairroRepository : IBairroRepository
     public async Task<Bairro?> GetByIdAsync(int codigo)
     {
         using var connection = new MySqlConnection(_dbConfig.ConnectionString);
-        
+
         var sql = "SELECT * FROM tb_bairro WHERE Codigo = @Codigo";
         var bairro = await connection.QueryFirstOrDefaultAsync<Bairro>(sql, new { Codigo = codigo });
-        
+
         return bairro;
+    }
+
+    public async Task<IEnumerable<Bairro>> GetByNameAsync(string nome)
+    {
+        using var connection = new MySqlConnection(_dbConfig.ConnectionString);
+
+        var sql = "SELECT * FROM tb_bairro WHERE nome like CONCAT('%',@Nome,'%')";
+        var bairros = await connection.QueryAsync<Bairro>(sql, new { Nome = nome });
+        return bairros;
     }
 }
 

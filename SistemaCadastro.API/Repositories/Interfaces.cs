@@ -53,6 +53,7 @@ public interface IBairroRepository
 {
     Task<int> GetOrCreateAsync(string nome);
     Task<Bairro?> GetByIdAsync(int codigo);
+    Task<IEnumerable<Bairro>> GetByNameAsync(string nome);
 }
 
 public interface IEnderecoRepository
