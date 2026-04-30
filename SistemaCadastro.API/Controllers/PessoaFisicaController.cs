@@ -67,6 +67,27 @@ public class PessoaFisicaController : ControllerBase
     }
 
     /// <summary>
+    /// Busca pessoas físicas pelo nome (LIKE)
+    /// Permissões: Todos os usuários autenticados
+    /// </summary>
+    [HttpGet("nome/{nome}")]
+    [Authorize(Policy = "QualquerAutenticado")]
+    [ProducesResponseType(typeof(IEnumerable<PessoaFisicaDto>), StatusCodes.Status200OK)]
+    public async Task<ActionResult<IEnumerable<PessoaFisicaDto>>> GetByNameAsync(string nome)
+    {
+        try
+        {
+            var pessoas = await _service.GetByNameAsync(nome);
+            return Ok(pessoas);
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex, "Erro ao buscar pessoas físicas por nome {Nome}", nome);
+            return StatusCode(500, new { message = "Erro ao buscar pessoas físicas" });
+        }
+    }
+
+    /// <summary>
     /// Cria um novo cadastro de pessoa física
     /// Permissões: Apenas Administradores e Usuários (Convidados NÃO podem)
     /// </summary>

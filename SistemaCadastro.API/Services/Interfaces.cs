@@ -15,6 +15,7 @@ public interface IPessoaFisicaService
 {
     Task<int> CreateAsync(PessoaFisicaCreateDto dto);
     Task<PessoaFisicaDto?> GetByIdAsync(int codigo);
+    Task<IEnumerable<PessoaFisicaDto>> GetByNameAsync(string nome);
     Task<bool> UpdateAsync(PessoaFisicaUpdateDto dto);
     Task<IEnumerable<PessoaFisicaDto>> GetAllAsync();
 }

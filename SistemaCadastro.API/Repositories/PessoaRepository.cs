@@ -126,11 +126,24 @@ public class PessoaFisicaRepository : IPessoaFisicaRepository
     public async Task<PessoaFisica?> GetByPessoaIdAsync(int pessoaId)
     {
         using var connection = new MySqlConnection(_dbConfig.ConnectionString);
-        
+
         var sql = "SELECT * FROM tb_pessoa_fisica WHERE pessoa = @PessoaId";
         var pessoaFisica = await connection.QueryFirstOrDefaultAsync<PessoaFisica>(sql, new { PessoaId = pessoaId });
-        
+
         return pessoaFisica;
+    }
+
+    public async Task<IEnumerable<Pessoa>> GetByNameAsync(string nome)
+    {
+        using var connection = new MySqlConnection(_dbConfig.ConnectionString);
+
+        var sql = @"SELECT p.* FROM tb_pessoa p
+                    INNER JOIN tb_pessoa_fisica pf ON pf.pessoa = p.codigo
+                    WHERE p.tipo = 'F' AND p.nome LIKE CONCAT('%',@Nome,'%')
+                    ORDER BY p.nome";
+        var pessoas = await connection.QueryAsync<Pessoa>(sql, new { Nome = nome });
+
+        return pessoas;
     }
 
     public async Task<bool> UpdateAsync(PessoaFisica pessoaFisica)

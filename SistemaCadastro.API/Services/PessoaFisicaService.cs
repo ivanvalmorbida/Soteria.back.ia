@@ -299,4 +299,19 @@ public class PessoaFisicaService : IPessoaFisicaService
 
         return result;
     }
+
+    public async Task<IEnumerable<PessoaFisicaDto>> GetByNameAsync(string nome)
+    {
+        var pessoas = await _pessoaFisicaRepository.GetByNameAsync(nome);
+        var result = new List<PessoaFisicaDto>();
+
+        foreach (var pessoa in pessoas)
+        {
+            var dto = await GetByIdAsync(pessoa.Codigo);
+            if (dto != null)
+                result.Add(dto);
+        }
+
+        return result;
+    }
 }

@@ -17,6 +17,7 @@ public interface IPessoaFisicaRepository
 {
     Task<int> CreateAsync(PessoaFisica pessoaFisica);
     Task<PessoaFisica?> GetByPessoaIdAsync(int pessoaId);
+    Task<IEnumerable<Pessoa>> GetByNameAsync(string nome);
     Task<bool> UpdateAsync(PessoaFisica pessoaFisica);
     Task<bool> DeleteAsync(int pessoaId);
 }
