@@ -48,13 +48,9 @@ public class PessoaJuridicaService : IPessoaJuridicaService
         }
 
         int? bairroId = null;
-        int? enderecoId = null;
 
         if (!string.IsNullOrWhiteSpace(dto.Bairro))
             bairroId = await _bairroRepository.GetOrCreateAsync(dto.Bairro);
-
-        if (!string.IsNullOrWhiteSpace(dto.Endereco))
-            enderecoId = await _enderecoRepository.GetOrCreateAsync(dto.Endereco);
 
         var pessoa = new Pessoa
         {
@@ -64,7 +60,7 @@ public class PessoaJuridicaService : IPessoaJuridicaService
             Estado = dto.Estado,
             Cidade = dto.Cidade,
             Bairro = bairroId,
-            Endereco = enderecoId,
+            Endereco = dto.EnderecoId,
             Numero = dto.Numero,
             Complemento = dto.Complemento,
             Obs = dto.Obs
@@ -231,20 +227,16 @@ public class PessoaJuridicaService : IPessoaJuridicaService
             return false;
 
         int? bairroId = null;
-        int? enderecoId = null;
 
         if (!string.IsNullOrWhiteSpace(dto.Bairro))
             bairroId = await _bairroRepository.GetOrCreateAsync(dto.Bairro);
-
-        if (!string.IsNullOrWhiteSpace(dto.Endereco))
-            enderecoId = await _enderecoRepository.GetOrCreateAsync(dto.Endereco);
 
         pessoa.Nome = dto.Nome;
         pessoa.Cep = dto.Cep;
         pessoa.Estado = dto.Estado;
         pessoa.Cidade = dto.Cidade;
         pessoa.Bairro = bairroId;
-        pessoa.Endereco = enderecoId;
+        pessoa.Endereco = dto.EnderecoId;
         pessoa.Numero = dto.Numero;
         pessoa.Complemento = dto.Complemento;
         pessoa.Obs = dto.Obs;
