@@ -14,6 +14,7 @@ public class PessoaFisicaService : IPessoaFisicaService
     private readonly IEnderecoRepository _enderecoRepository;
     private readonly IEstadoRepository _estadoRepository;
     private readonly ICidadeRepository _cidadeRepository;
+    private readonly ICBORepository _cboRepository;
 
     public PessoaFisicaService(
         IPessoaRepository pessoaRepository,
@@ -23,7 +24,8 @@ public class PessoaFisicaService : IPessoaFisicaService
         IBairroRepository bairroRepository,
         IEnderecoRepository enderecoRepository,
         IEstadoRepository estadoRepository,
-        ICidadeRepository cidadeRepository)
+        ICidadeRepository cidadeRepository,
+        ICBORepository cboRepository)
     {
         _pessoaRepository = pessoaRepository;
         _pessoaFisicaRepository = pessoaFisicaRepository;
@@ -33,6 +35,7 @@ public class PessoaFisicaService : IPessoaFisicaService
         _enderecoRepository = enderecoRepository;
         _estadoRepository = estadoRepository;
         _cidadeRepository = cidadeRepository;
+        _cboRepository = cboRepository;
     }
 
     public async Task<int> CreateAsync(PessoaFisicaCreateDto dto)
@@ -156,6 +159,13 @@ public class PessoaFisicaService : IPessoaFisicaService
             enderecoNome = endereco?.Nome;
         }
 
+        string? profissaoDescricao = null;
+        if (pessoaFisica.Profissao.HasValue)
+        {
+            var cbo = await _cboRepository.GetByCodigoAsync(pessoaFisica.Profissao.Value.ToString());
+            profissaoDescricao = cbo?.Descricao;
+        }
+
         return new PessoaFisicaDto
         {
             Codigo = pessoa.Codigo,
@@ -169,6 +179,7 @@ public class PessoaFisicaService : IPessoaFisicaService
             EstadoCivil = pessoaFisica.EstadoCivil,
             Nacionalidade = pessoaFisica.Nacionalidade,
             Profissao = pessoaFisica.Profissao,
+            ProfissaoDescricao = profissaoDescricao,
             Ctps = pessoaFisica.Ctps,
             Pis = pessoaFisica.Pis,
             CidadeNasc = pessoaFisica.CidadeNasc,

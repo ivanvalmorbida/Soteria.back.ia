@@ -79,6 +79,7 @@ public class PessoaFisicaDto
     public int? EstadoCivil { get; set; }
     public int? Nacionalidade { get; set; }
     public int? Profissao { get; set; }
+    public string? ProfissaoDescricao { get; set; }
     public string? Ctps { get; set; }
     public string? Pis { get; set; }
     public int? CidadeNasc { get; set; }
