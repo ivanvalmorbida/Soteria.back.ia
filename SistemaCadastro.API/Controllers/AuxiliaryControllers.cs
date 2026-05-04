@@ -157,11 +157,18 @@ public class CBOController : ControllerBase
     public async Task<ActionResult<CBO>> GetByCodigo(string codigo)
     {
         var cbo = await _repository.GetByCodigoAsync(codigo);
-        
+
         if (cbo == null)
             return NotFound();
 
         return Ok(cbo);
+    }
+
+    [HttpGet("descricao/{descricao}")]
+    public async Task<ActionResult<IEnumerable<CBO>>> GetByDescricaoAsync(string descricao)
+    {
+        var cbos = await _repository.GetByDescricaoAsync(descricao);
+        return Ok(cbos);
     }
 }
 

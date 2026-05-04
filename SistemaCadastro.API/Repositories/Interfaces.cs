@@ -74,6 +74,7 @@ public interface ICBORepository
 {
     Task<IEnumerable<CBO>> GetAllAsync();
     Task<CBO?> GetByCodigoAsync(string codigo);
+    Task<IEnumerable<CBO>> GetByDescricaoAsync(string descricao);
 }
 
 public interface INacionalidadeRepository

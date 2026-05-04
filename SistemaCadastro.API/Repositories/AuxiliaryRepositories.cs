@@ -164,7 +164,7 @@ public class EnderecoRepository : IEnderecoRepository
         
         return endereco;
     }
-    public async Task<IEnumerable<Endereco>> GetByNameAsync(string nome)
+    public async Task<IEnumerable<Endereco>> /*GetByNameAsync*/(string nome)
     {
         using var connection = new MySqlConnection(_dbConfig.ConnectionString);
         
@@ -216,11 +216,20 @@ public class CBORepository : ICBORepository
     public async Task<CBO?> GetByCodigoAsync(string codigo)
     {
         using var connection = new MySqlConnection(_dbConfig.ConnectionString);
-        
+
         var sql = "SELECT CBO as Codigo, Descricao FROM tb_cbo WHERE CBO = @Codigo";
         var cbo = await connection.QueryFirstOrDefaultAsync<CBO>(sql, new { Codigo = codigo });
-        
+
         return cbo;
+    }
+
+    public async Task<IEnumerable<CBO>> GetByDescricaoAsync(string descricao)
+    {
+        using var connection = new MySqlConnection(_dbConfig.ConnectionString);
+
+        var sql = "SELECT CBO as Codigo, Descricao FROM tb_cbo WHERE Descricao like CONCAT('%',@Descricao,'%') ORDER BY Descricao";
+        var cbos = await connection.QueryAsync<CBO>(sql, new { Descricao = descricao });
+        return cbos;
     }
 }
 
