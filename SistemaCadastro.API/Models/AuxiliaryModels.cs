@@ -64,3 +64,11 @@ public class AtividadeEconomica
     public string? Atividade { get; set; }
     public string? Descricao { get; set; }
 }
+
+public class AtividadeEconomicaSubsetor
+{
+    public int Codigo { get; set; }
+    public int? Setor { get; set; }
+    public string? Subsetor { get; set; }
+    public string? Descricao { get; set; }
+}

@@ -237,6 +237,57 @@ public class AtividadeEconomicaController : ControllerBase
         var atividades = await _repository.GetBySetorAsync(setor);
         return Ok(atividades);
     }
+
+    [HttpGet("descricao/{descricao}")]
+    public async Task<ActionResult<IEnumerable<AtividadeEconomica>>> GetByDescricaoAsync(string descricao)
+    {
+        var atividades = await _repository.GetByDescricaoAsync(descricao);
+        return Ok(atividades);
+    }
+}
+
+[ApiController]
+[Route("api/[controller]")]
+public class AtividadeEconomicaSubsetorController : ControllerBase
+{
+    private readonly IAtividadeEconomicaSubsetorRepository _repository;
+
+    public AtividadeEconomicaSubsetorController(IAtividadeEconomicaSubsetorRepository repository)
+    {
+        _repository = repository;
+    }
+
+    [HttpGet]
+    public async Task<ActionResult<IEnumerable<AtividadeEconomicaSubsetor>>> GetAll()
+    {
+        var subsetores = await _repository.GetAllAsync();
+        return Ok(subsetores);
+    }
+
+    [HttpGet("{codigo}")]
+    public async Task<ActionResult<AtividadeEconomicaSubsetor>> GetById(int codigo)
+    {
+        var subsetor = await _repository.GetByIdAsync(codigo);
+
+        if (subsetor == null)
+            return NotFound();
+
+        return Ok(subsetor);
+    }
+
+    [HttpGet("setor/{setor}")]
+    public async Task<ActionResult<IEnumerable<AtividadeEconomicaSubsetor>>> GetBySetor(int setor)
+    {
+        var subsetores = await _repository.GetBySetorAsync(setor);
+        return Ok(subsetores);
+    }
+
+    [HttpGet("subsetor/{subsetor}")]
+    public async Task<ActionResult<IEnumerable<AtividadeEconomicaSubsetor>>> GetBySubSetor(string subsetor)
+    {
+        var subsetores = await _repository.GetBySubSetorAsync(subsetor);
+        return Ok(subsetores);
+    }
 }
 
 [ApiController]

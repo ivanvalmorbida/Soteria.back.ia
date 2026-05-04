@@ -88,6 +88,15 @@ public interface IAtividadeEconomicaRepository
     Task<IEnumerable<AtividadeEconomica>> GetAllAsync();
     Task<AtividadeEconomica?> GetByIdAsync(int codigo);
     Task<IEnumerable<AtividadeEconomica>> GetBySetorAsync(int setor);
+    Task<IEnumerable<AtividadeEconomica>> GetByDescricaoAsync(string descricao);
+}
+
+public interface IAtividadeEconomicaSubsetorRepository
+{
+    Task<IEnumerable<AtividadeEconomicaSubsetor>> GetAllAsync();
+    Task<AtividadeEconomicaSubsetor?> GetByIdAsync(int codigo);
+    Task<IEnumerable<AtividadeEconomicaSubsetor>> GetBySetorAsync(int setor);
+    Task<IEnumerable<AtividadeEconomicaSubsetor>> GetBySubSetorAsync(string subsetor);
 }
 
 public interface IPessoaEnderecoEletronicoRepository

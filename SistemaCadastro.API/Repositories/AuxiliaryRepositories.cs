@@ -292,6 +292,15 @@ public class AtividadeEconomicaRepository : IAtividadeEconomicaRepository
         return atividade;
     }
 
+    public async Task<IEnumerable<AtividadeEconomica>> GetByDescricaoAsync(string descricao)
+    {
+        using var connection = new MySqlConnection(_dbConfig.ConnectionString);
+
+        var sql = "SELECT * FROM tb_atividade_economica WHERE descricao like CONCAT('%',@Descricao,'%') ORDER BY descricao";
+        var atividades = await connection.QueryAsync<AtividadeEconomica>(sql, new { Descricao = descricao });
+        return atividades;
+    }
+
     public async Task<IEnumerable<AtividadeEconomica>> GetBySetorAsync(int setor)
     {
         using var connection = new MySqlConnection(_dbConfig.ConnectionString);
@@ -300,6 +309,55 @@ public class AtividadeEconomicaRepository : IAtividadeEconomicaRepository
         var atividades = await connection.QueryAsync<AtividadeEconomica>(sql, new { Setor = setor });
         
         return atividades;
+    }
+}
+
+public class AtividadeEconomicaSubsetorRepository : IAtividadeEconomicaSubsetorRepository
+{
+    private readonly DatabaseConfig _dbConfig;
+
+    public AtividadeEconomicaSubsetorRepository(DatabaseConfig dbConfig)
+    {
+        _dbConfig = dbConfig;
+    }
+
+    public async Task<IEnumerable<AtividadeEconomicaSubsetor>> GetAllAsync()
+    {
+        using var connection = new MySqlConnection(_dbConfig.ConnectionString);
+
+        var sql = "SELECT * FROM tb_atividade_economica_subsetor ORDER BY subsetor";
+        var subsetores = await connection.QueryAsync<AtividadeEconomicaSubsetor>(sql);
+
+        return subsetores;
+    }
+
+    public async Task<AtividadeEconomicaSubsetor?> GetByIdAsync(int codigo)
+    {
+        using var connection = new MySqlConnection(_dbConfig.ConnectionString);
+
+        var sql = "SELECT * FROM tb_atividade_economica_subsetor WHERE codigo = @Codigo";
+        var subsetor = await connection.QueryFirstOrDefaultAsync<AtividadeEconomicaSubsetor>(sql, new { Codigo = codigo });
+
+        return subsetor;
+    }
+
+    public async Task<IEnumerable<AtividadeEconomicaSubsetor>> GetBySetorAsync(int setor)
+    {
+        using var connection = new MySqlConnection(_dbConfig.ConnectionString);
+
+        var sql = "SELECT * FROM tb_atividade_economica_subsetor WHERE setor = @Setor ORDER BY descricao";
+        var subsetores = await connection.QueryAsync<AtividadeEconomicaSubsetor>(sql, new { Setor = setor });
+
+        return subsetores;
+    }
+
+    public async Task<IEnumerable<AtividadeEconomicaSubsetor>> GetBySubSetorAsync(string subsetor)
+    {
+        using var connection = new MySqlConnection(_dbConfig.ConnectionString);
+
+        var sql = "SELECT * FROM tb_atividade_economica_subsetor WHERE subsetor like CONCAT('%',@Subsetor,'%') ORDER BY subsetor";
+        var subsetores = await connection.QueryAsync<AtividadeEconomicaSubsetor>(sql, new { Subsetor = subsetor });
+        return subsetores;
     }
 }
 
