@@ -164,7 +164,7 @@ public class EnderecoRepository : IEnderecoRepository
         
         return endereco;
     }
-    public async Task<IEnumerable<Endereco>> /*GetByNameAsync*/(string nome)
+    public async Task<IEnumerable<Endereco>> GetByNameAsync(string nome)
     {
         using var connection = new MySqlConnection(_dbConfig.ConnectionString);
         
