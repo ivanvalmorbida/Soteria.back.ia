@@ -47,11 +47,6 @@ public class PessoaJuridicaService : IPessoaJuridicaService
             dto.Cnpj = dto.Cnpj.Trim().ToUpperInvariant().Replace(".", "").Replace("/", "").Replace("-", "");
         }
 
-        int? bairroId = null;
-
-        if (!string.IsNullOrWhiteSpace(dto.Bairro))
-            bairroId = await _bairroRepository.GetOrCreateAsync(dto.Bairro);
-
         var pessoa = new Pessoa
         {
             Tipo = 'J',
@@ -59,7 +54,7 @@ public class PessoaJuridicaService : IPessoaJuridicaService
             Cep = dto.Cep,
             Estado = dto.Estado,
             Cidade = dto.Cidade,
-            Bairro = bairroId,
+            Bairro = dto.Bairro,
             Endereco = dto.EnderecoId,
             Numero = dto.Numero,
             Complemento = dto.Complemento,
@@ -186,6 +181,7 @@ public class PessoaJuridicaService : IPessoaJuridicaService
             EstadoNome = estadoNome,
             Cidade = pessoa.Cidade,
             CidadeNome = cidadeNome,
+            Bairro = pessoa.Bairro,
             BairroNome = bairroNome,
             EnderecoId = pessoa.Endereco,
             EnderecoNome = enderecoNome,
@@ -227,16 +223,11 @@ public class PessoaJuridicaService : IPessoaJuridicaService
         if (pessoa == null)
             return false;
 
-        int? bairroId = null;
-
-        if (!string.IsNullOrWhiteSpace(dto.Bairro))
-            bairroId = await _bairroRepository.GetOrCreateAsync(dto.Bairro);
-
         pessoa.Nome = dto.Nome;
         pessoa.Cep = dto.Cep;
         pessoa.Estado = dto.Estado;
         pessoa.Cidade = dto.Cidade;
-        pessoa.Bairro = bairroId;
+        pessoa.Bairro = dto.Bairro;
         pessoa.Endereco = dto.EnderecoId;
         pessoa.Numero = dto.Numero;
         pessoa.Complemento = dto.Complemento;
