@@ -30,7 +30,9 @@ public class Cep
     public string CepCodigo { get; set; } = string.Empty;
     public string? Complemento { get; set; }
     public int? Endereco { get; set; }
+    public string? EnderecoNome { get; set; }
     public int? Bairro { get; set; }
+    public string? BairroNome { get; set; }
     public int? Cidade { get; set; }
     public int? Estado { get; set; }
 }

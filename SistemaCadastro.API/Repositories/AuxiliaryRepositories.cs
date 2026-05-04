@@ -186,10 +186,17 @@ public class CepRepository : ICepRepository
     public async Task<Cep?> GetByCepAsync(string cep)
     {
         using var connection = new MySqlConnection(_dbConfig.ConnectionString);
-        
-        var sql = "SELECT * FROM tb_cep WHERE cep = @Cep";
+
+        var sql = @"SELECT c.cep AS CepCodigo, c.complemento AS Complemento,
+                           c.endereco AS Endereco, e.Nome AS EnderecoNome,
+                           c.bairro AS Bairro, b.Nome AS BairroNome,
+                           c.cidade AS Cidade, c.estado AS Estado
+                    FROM tb_cep c
+                    LEFT JOIN tb_endereco e ON e.Codigo = c.endereco
+                    LEFT JOIN tb_bairro b ON b.Codigo = c.bairro
+                    WHERE c.cep = @Cep";
         var cepData = await connection.QueryFirstOrDefaultAsync<Cep>(sql, new { Cep = cep });
-        
+
         return cepData;
     }
 }
