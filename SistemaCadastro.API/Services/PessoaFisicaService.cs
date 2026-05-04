@@ -180,6 +180,7 @@ public class PessoaFisicaService : IPessoaFisicaService
             CidadeNome = cidadeNome,
             Bairro = pessoa.Bairro,
             BairroNome = bairroNome,
+            EnderecoId = pessoa.Endereco,
             EnderecoNome = enderecoNome,
             Numero = pessoa.Numero,
             Complemento = pessoa.Complemento,

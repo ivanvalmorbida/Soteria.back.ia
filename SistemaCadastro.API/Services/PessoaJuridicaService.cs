@@ -187,6 +187,7 @@ public class PessoaJuridicaService : IPessoaJuridicaService
             Cidade = pessoa.Cidade,
             CidadeNome = cidadeNome,
             BairroNome = bairroNome,
+            EnderecoId = pessoa.Endereco,
             EnderecoNome = enderecoNome,
             Numero = pessoa.Numero,
             Complemento = pessoa.Complemento,

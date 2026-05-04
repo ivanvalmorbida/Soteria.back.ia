@@ -68,6 +68,7 @@ public class PessoaJuridicaDto
     public int? Cidade { get; set; }
     public string? CidadeNome { get; set; }
     public string? BairroNome { get; set; }
+    public int? EnderecoId { get; set; }
     public string? EnderecoNome { get; set; }
     public string? Numero { get; set; }
     public string? Complemento { get; set; }
