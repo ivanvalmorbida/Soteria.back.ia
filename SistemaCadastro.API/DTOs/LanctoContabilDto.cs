@@ -19,7 +19,6 @@ public class LanctoContabilDto
 
 public class LanctoContabilCreateDto
 {
-    public int? Codigo { get; set; }
     public int Pessoa { get; set; }
     public int CentroCusto { get; set; }
     public int Credito { get; set; }

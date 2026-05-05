@@ -35,16 +35,8 @@ public class CentroCustoService : ICentroCustoService
     {
         ValidarDescricao(dto.Descricao);
 
-        if (dto.Codigo.HasValue && dto.Codigo.Value > 0)
-        {
-            var existente = await _repository.GetByIdAsync(dto.Codigo.Value);
-            if (existente != null)
-                throw new ArgumentException($"Já existe um centro de custo com o código {dto.Codigo.Value}.");
-        }
-
         var entidade = new CentroCusto
         {
-            Codigo = dto.Codigo ?? 0,
             Descricao = dto.Descricao.Trim()
         };
 

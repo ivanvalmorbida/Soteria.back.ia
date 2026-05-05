@@ -8,7 +8,6 @@ public class CentroCustoDto
 
 public class CentroCustoCreateDto
 {
-    public int? Codigo { get; set; }
     public string Descricao { get; set; } = string.Empty;
 }
 

@@ -8,7 +8,6 @@ public class HistoricoContabilDto
 
 public class HistoricoContabilCreateDto
 {
-    public int? Codigo { get; set; }
     public string Descricao { get; set; } = string.Empty;
 }
 

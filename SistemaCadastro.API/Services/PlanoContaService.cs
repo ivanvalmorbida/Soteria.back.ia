@@ -41,16 +41,8 @@ public class PlanoContaService : IPlanoContaService
     {
         Validar(dto);
 
-        if (dto.Codigo.HasValue && dto.Codigo.Value > 0)
-        {
-            var existente = await _repository.GetByIdAsync(dto.Codigo.Value);
-            if (existente != null)
-                throw new ArgumentException($"Já existe um plano de conta com o código {dto.Codigo.Value}.");
-        }
-
         var entidade = new PlanoConta
         {
-            Codigo = dto.Codigo ?? 0,
             CodigoPai = dto.CodigoPai,
             Tipo = dto.Tipo.Trim(),
             Rotulo = dto.Rotulo.Trim(),

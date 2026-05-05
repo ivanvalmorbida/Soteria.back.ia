@@ -29,16 +29,8 @@ public class LanctoContabilService : ILanctoContabilService
     {
         Validar(dto.Descricao, dto.Valor);
 
-        if (dto.Codigo.HasValue && dto.Codigo.Value > 0)
-        {
-            var existente = await _repository.GetByIdAsync(dto.Codigo.Value);
-            if (existente != null)
-                throw new ArgumentException($"Já existe um lançamento contábil com o código {dto.Codigo.Value}.");
-        }
-
         var entidade = new LanctoContabil
         {
-            Codigo = dto.Codigo ?? 0,
             Pessoa = dto.Pessoa,
             CentroCusto = dto.CentroCusto,
             Credito = dto.Credito,

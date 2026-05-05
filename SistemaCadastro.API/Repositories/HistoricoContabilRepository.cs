@@ -44,16 +44,8 @@ public class HistoricoContabilRepository : IHistoricoContabilRepository
     {
         using var connection = new MySqlConnection(_dbConfig.ConnectionString);
 
-        var codigo = historico.Codigo;
-        if (codigo <= 0)
-        {
-            var nextSql = "SELECT COALESCE(MAX(Codigo), 0) + 1 FROM tb_historico_contabil";
-            codigo = await connection.ExecuteScalarAsync<int>(nextSql);
-        }
-
-        var sql = "INSERT INTO tb_historico_contabil (Codigo, Descricao) VALUES (@Codigo, @Descricao)";
-        await connection.ExecuteAsync(sql, new { Codigo = codigo, historico.Descricao });
-        return codigo;
+        var sql = "INSERT INTO tb_historico_contabil (Descricao) VALUES (@Descricao); SELECT LAST_INSERT_ID();";
+        return await connection.ExecuteScalarAsync<int>(sql, new { historico.Descricao });
     }
 
     public async Task<bool> UpdateAsync(HistoricoContabil historico)

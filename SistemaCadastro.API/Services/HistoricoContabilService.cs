@@ -35,16 +35,8 @@ public class HistoricoContabilService : IHistoricoContabilService
     {
         ValidarDescricao(dto.Descricao);
 
-        if (dto.Codigo.HasValue && dto.Codigo.Value > 0)
-        {
-            var existente = await _repository.GetByIdAsync(dto.Codigo.Value);
-            if (existente != null)
-                throw new ArgumentException($"Já existe um histórico contábil com o código {dto.Codigo.Value}.");
-        }
-
         var entidade = new HistoricoContabil
         {
-            Codigo = dto.Codigo ?? 0,
             Descricao = dto.Descricao.Trim()
         };
 

@@ -52,24 +52,16 @@ public class PlanoContaRepository : IPlanoContaRepository
     {
         using var connection = new MySqlConnection(_dbConfig.ConnectionString);
 
-        var codigo = planoConta.Codigo;
-        if (codigo <= 0)
+        var sql = @"INSERT INTO tb_plano_conta (CodigoPai, Tipo, Rotulo, Descricao) 
+                    VALUES (@CodigoPai, @Tipo, @Rotulo, @Descricao);
+                    SELECT LAST_INSERT_ID();";
+        return await connection.ExecuteScalarAsync<int>(sql, new
         {
-            var nextSql = "SELECT COALESCE(MAX(Codigo), 0) + 1 FROM tb_plano_conta";
-            codigo = await connection.ExecuteScalarAsync<int>(nextSql);
-        }
-
-        var sql = @"INSERT INTO tb_plano_conta (Codigo, CodigoPai, Tipo, Rotulo, Descricao) 
-                    VALUES (@Codigo, @CodigoPai, @Tipo, @Rotulo, @Descricao)";
-        await connection.ExecuteAsync(sql, new
-        {
-            Codigo = codigo,
             CodigoPai = planoConta.CodigoPai.HasValue && planoConta.CodigoPai.Value > 0 ? planoConta.CodigoPai : (int?)null,
             planoConta.Tipo,
             planoConta.Rotulo,
             planoConta.Descricao
         });
-        return codigo;
     }
 
     public async Task<bool> UpdateAsync(PlanoConta planoConta)

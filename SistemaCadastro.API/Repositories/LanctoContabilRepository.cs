@@ -34,18 +34,11 @@ public class LanctoContabilRepository : ILanctoContabilRepository
     {
         using var connection = new MySqlConnection(_dbConfig.ConnectionString);
 
-        var codigo = lancto.Codigo;
-        if (codigo <= 0)
+        var sql = @"INSERT INTO tb_lancto_contabil (Pessoa, CentroCusto, Credito, Debito, Valor, Data, HC, Descricao) 
+                    VALUES (@Pessoa, @CentroCusto, @Credito, @Debito, @Valor, @Data, @HC, @Descricao);
+                    SELECT LAST_INSERT_ID();";
+        return await connection.ExecuteScalarAsync<int>(sql, new
         {
-            var nextSql = "SELECT COALESCE(MAX(Codigo), 0) + 1 FROM tb_lancto_contabil";
-            codigo = await connection.ExecuteScalarAsync<int>(nextSql);
-        }
-
-        var sql = @"INSERT INTO tb_lancto_contabil (Codigo, Pessoa, CentroCusto, Credito, Debito, Valor, Data, HC, Descricao) 
-                    VALUES (@Codigo, @Pessoa, @CentroCusto, @Credito, @Debito, @Valor, @Data, @HC, @Descricao)";
-        await connection.ExecuteAsync(sql, new
-        {
-            Codigo = codigo,
             lancto.Pessoa,
             lancto.CentroCusto,
             lancto.Credito,
@@ -55,7 +48,6 @@ public class LanctoContabilRepository : ILanctoContabilRepository
             lancto.HC,
             lancto.Descricao
         });
-        return codigo;
     }
 
     public async Task<bool> UpdateAsync(LanctoContabil lancto)

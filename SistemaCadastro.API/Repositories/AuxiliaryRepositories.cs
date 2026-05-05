@@ -492,16 +492,8 @@ public class CentroCustoRepository : ICentroCustoRepository
     {
         using var connection = new MySqlConnection(_dbConfig.ConnectionString);
 
-        var codigo = centroCusto.Codigo;
-        if (codigo <= 0)
-        {
-            var nextSql = "SELECT COALESCE(MAX(Codigo), 0) + 1 FROM tb_centro_custo";
-            codigo = await connection.ExecuteScalarAsync<int>(nextSql);
-        }
-
-        var sql = "INSERT INTO tb_centro_custo (Codigo, Descricao) VALUES (@Codigo, @Descricao)";
-        await connection.ExecuteAsync(sql, new { Codigo = codigo, centroCusto.Descricao });
-        return codigo;
+        var sql = "INSERT INTO tb_centro_custo (Descricao) VALUES (@Descricao); SELECT LAST_INSERT_ID();";
+        return await connection.ExecuteScalarAsync<int>(sql, new { centroCusto.Descricao });
     }
 
     public async Task<bool> UpdateAsync(CentroCusto centroCusto)
