@@ -93,12 +93,18 @@ builder.Services.AddScoped<IAtividadeEconomicaRepository, AtividadeEconomicaRepo
 builder.Services.AddScoped<IAtividadeEconomicaSubsetorRepository, AtividadeEconomicaSubsetorRepository>();
 builder.Services.AddScoped<IUsuarioRepository, UsuarioRepository>();
 builder.Services.AddScoped<IEstadoCivilRepository, EstadoCivilRepository>();
+builder.Services.AddScoped<ICentroCustoRepository, CentroCustoRepository>();
+builder.Services.AddScoped<IHistoricoContabilRepository, HistoricoContabilRepository>();
+builder.Services.AddScoped<ILanctoContabilRepository, LanctoContabilRepository>();
 
 // Services
 builder.Services.AddScoped<IPessoaService, PessoaService>();
 builder.Services.AddScoped<IPessoaFisicaService, PessoaFisicaService>();
 builder.Services.AddScoped<IPessoaJuridicaService, PessoaJuridicaService>();
 builder.Services.AddScoped<IAuthService, AuthService>();
+builder.Services.AddScoped<ICentroCustoService, CentroCustoService>();
+builder.Services.AddScoped<IHistoricoContabilService, HistoricoContabilService>();
+builder.Services.AddScoped<ILanctoContabilService, LanctoContabilService>();
 
 // FluentValidation
 builder.Services.AddFluentValidationAutoValidation();

@@ -27,3 +27,32 @@ public interface IPessoaJuridicaService
     Task<bool> UpdateAsync(PessoaJuridicaUpdateDto dto);
     Task<IEnumerable<PessoaJuridicaDto>> GetAllAsync();
 }
+
+public interface ICentroCustoService
+{
+    Task<IEnumerable<CentroCustoDto>> GetAllAsync();
+    Task<CentroCustoDto?> GetByIdAsync(int codigo);
+    Task<IEnumerable<CentroCustoDto>> GetByDescricaoAsync(string descricao);
+    Task<int> CreateAsync(CentroCustoCreateDto dto);
+    Task<bool> UpdateAsync(CentroCustoUpdateDto dto);
+    Task<bool> DeleteAsync(int codigo);
+}
+
+public interface IHistoricoContabilService
+{
+    Task<IEnumerable<HistoricoContabilDto>> GetAllAsync();
+    Task<HistoricoContabilDto?> GetByIdAsync(int codigo);
+    Task<IEnumerable<HistoricoContabilDto>> GetByDescricaoAsync(string descricao);
+    Task<int> CreateAsync(HistoricoContabilCreateDto dto);
+    Task<bool> UpdateAsync(HistoricoContabilUpdateDto dto);
+    Task<bool> DeleteAsync(int codigo);
+}
+
+public interface ILanctoContabilService
+{
+    Task<IEnumerable<LanctoContabilDto>> GetAllAsync();
+    Task<LanctoContabilDto?> GetByIdAsync(int codigo);
+    Task<int> CreateAsync(LanctoContabilCreateDto dto);
+    Task<bool> UpdateAsync(LanctoContabilUpdateDto dto);
+    Task<bool> DeleteAsync(int codigo);
+}

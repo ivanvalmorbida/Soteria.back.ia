@@ -74,3 +74,37 @@ public class AtividadeEconomicaSubsetor
     public string? Subsetor { get; set; }
     public string? Descricao { get; set; }
 }
+
+public class CentroCusto
+{
+    public int Codigo { get; set; }
+    public string Descricao { get; set; } = string.Empty;
+}
+
+public class HistoricoContabil
+{
+    public int Codigo { get; set; }
+    public string Descricao { get; set; } = string.Empty;
+}
+
+public class LanctoContabil
+{
+    public int Codigo { get; set; }
+    public int Pessoa { get; set; }
+    public int CentroCusto { get; set; }
+    public int Credito { get; set; }
+    public int Debito { get; set; }
+    public double Valor { get; set; }
+    public DateTime Data { get; set; }
+    public int HP { get; set; }
+    public string Descricao { get; set; } = string.Empty;
+}
+
+public class PlanoConta
+{
+    public int Codigo { get; set; }
+    public int? CodigoPai { get; set; }
+    public string Tipo { get; set; } = string.Empty;
+    public string Rotulo { get; set; } = string.Empty;
+    public string Descricao { get; set; } = string.Empty;
+}

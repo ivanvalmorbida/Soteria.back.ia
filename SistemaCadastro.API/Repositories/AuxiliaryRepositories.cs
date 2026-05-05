@@ -452,6 +452,77 @@ public class PessoaTelefoneRepository : IPessoaTelefoneRepository
     }
 }
 
+public class CentroCustoRepository : ICentroCustoRepository
+{
+    private readonly DatabaseConfig _dbConfig;
+
+    public CentroCustoRepository(DatabaseConfig dbConfig)
+    {
+        _dbConfig = dbConfig;
+    }
+
+    public async Task<IEnumerable<CentroCusto>> GetAllAsync()
+    {
+        using var connection = new MySqlConnection(_dbConfig.ConnectionString);
+
+        var sql = "SELECT Codigo, Descricao FROM tb_centro_custo ORDER BY Descricao";
+        var centros = await connection.QueryAsync<CentroCusto>(sql);
+        return centros;
+    }
+
+    public async Task<CentroCusto?> GetByIdAsync(int codigo)
+    {
+        using var connection = new MySqlConnection(_dbConfig.ConnectionString);
+
+        var sql = "SELECT Codigo, Descricao FROM tb_centro_custo WHERE Codigo = @Codigo";
+        return await connection.QueryFirstOrDefaultAsync<CentroCusto>(sql, new { Codigo = codigo });
+    }
+
+    public async Task<IEnumerable<CentroCusto>> GetByDescricaoAsync(string descricao)
+    {
+        using var connection = new MySqlConnection(_dbConfig.ConnectionString);
+
+        var sql = @"SELECT Codigo, Descricao FROM tb_centro_custo
+                    WHERE Descricao LIKE CONCAT('%',@Descricao,'%')
+                    ORDER BY Descricao";
+        return await connection.QueryAsync<CentroCusto>(sql, new { Descricao = descricao });
+    }
+
+    public async Task<int> CreateAsync(CentroCusto centroCusto)
+    {
+        using var connection = new MySqlConnection(_dbConfig.ConnectionString);
+
+        var codigo = centroCusto.Codigo;
+        if (codigo <= 0)
+        {
+            var nextSql = "SELECT COALESCE(MAX(Codigo), 0) + 1 FROM tb_centro_custo";
+            codigo = await connection.ExecuteScalarAsync<int>(nextSql);
+        }
+
+        var sql = "INSERT INTO tb_centro_custo (Codigo, Descricao) VALUES (@Codigo, @Descricao)";
+        await connection.ExecuteAsync(sql, new { Codigo = codigo, centroCusto.Descricao });
+        return codigo;
+    }
+
+    public async Task<bool> UpdateAsync(CentroCusto centroCusto)
+    {
+        using var connection = new MySqlConnection(_dbConfig.ConnectionString);
+
+        var sql = "UPDATE tb_centro_custo SET Descricao = @Descricao WHERE Codigo = @Codigo";
+        var result = await connection.ExecuteAsync(sql, new { centroCusto.Codigo, centroCusto.Descricao });
+        return result > 0;
+    }
+
+    public async Task<bool> DeleteAsync(int codigo)
+    {
+        using var connection = new MySqlConnection(_dbConfig.ConnectionString);
+
+        var sql = "DELETE FROM tb_centro_custo WHERE Codigo = @Codigo";
+        var result = await connection.ExecuteAsync(sql, new { Codigo = codigo });
+        return result > 0;
+    }
+}
+
 public class EstadoCivilRepository : IEstadoCivilRepository
 {
     private readonly DatabaseConfig _dbConfig;
