@@ -45,7 +45,7 @@ public class LanctoContabilService : ILanctoContabilService
             Debito = dto.Debito,
             Valor = dto.Valor,
             Data = dto.Data,
-            HP = dto.HP,
+            HC = dto.HC,
             Descricao = dto.Descricao.Trim()
         };
 
@@ -65,7 +65,7 @@ public class LanctoContabilService : ILanctoContabilService
             Debito = dto.Debito,
             Valor = dto.Valor,
             Data = dto.Data,
-            HP = dto.HP,
+            HC = dto.HC,
             Descricao = dto.Descricao.Trim()
         };
 
@@ -99,7 +99,7 @@ public class LanctoContabilService : ILanctoContabilService
         DebitoDescricao = string.Empty,
         Valor = lancto.Valor,
         Data = lancto.Data,
-        HP = lancto.HP,
+        HC = lancto.HC,
         Descricao = lancto.Descricao
     };
 }

@@ -56,3 +56,14 @@ public interface ILanctoContabilService
     Task<bool> UpdateAsync(LanctoContabilUpdateDto dto);
     Task<bool> DeleteAsync(int codigo);
 }
+
+public interface IPlanoContaService
+{
+    Task<IEnumerable<PlanoContaDto>> GetAllAsync();
+    Task<PlanoContaDto?> GetByIdAsync(int codigo);
+    Task<IEnumerable<PlanoContaDto>> GetByTipoAsync(string tipo);
+    Task<IEnumerable<PlanoContaDto>> GetByDescricaoAsync(string descricao);
+    Task<int> CreateAsync(PlanoContaCreateDto dto);
+    Task<bool> UpdateAsync(PlanoContaUpdateDto dto);
+    Task<bool> DeleteAsync(int codigo);
+}

@@ -13,7 +13,7 @@ public class LanctoContabilDto
     public string DebitoDescricao { get; set; } = string.Empty;
     public double Valor { get; set; }
     public DateTime Data { get; set; }
-    public int HP { get; set; }
+    public int HC { get; set; }
     public string Descricao { get; set; } = string.Empty;
 }
 
@@ -26,7 +26,7 @@ public class LanctoContabilCreateDto
     public int Debito { get; set; }
     public double Valor { get; set; }
     public DateTime Data { get; set; }
-    public int HP { get; set; }
+    public int HC { get; set; }
     public string Descricao { get; set; } = string.Empty;
 }
 
@@ -39,6 +39,6 @@ public class LanctoContabilUpdateDto
     public int Debito { get; set; }
     public double Valor { get; set; }
     public DateTime Data { get; set; }
-    public int HP { get; set; }
+    public int HC { get; set; }
     public string Descricao { get; set; } = string.Empty;
 }

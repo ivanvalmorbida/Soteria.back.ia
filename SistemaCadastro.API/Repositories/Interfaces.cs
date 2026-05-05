@@ -140,3 +140,14 @@ public interface ILanctoContabilRepository
     Task<bool> UpdateAsync(LanctoContabil lancto);
     Task<bool> DeleteAsync(int codigo);
 }
+
+public interface IPlanoContaRepository
+{
+    Task<IEnumerable<PlanoConta>> GetAllAsync();
+    Task<PlanoConta?> GetByIdAsync(int codigo);
+    Task<IEnumerable<PlanoConta>> GetByTipoAsync(string tipo);
+    Task<IEnumerable<PlanoConta>> GetByDescricaoAsync(string descricao);
+    Task<int> CreateAsync(PlanoConta planoConta);
+    Task<bool> UpdateAsync(PlanoConta planoConta);
+    Task<bool> DeleteAsync(int codigo);
+}
