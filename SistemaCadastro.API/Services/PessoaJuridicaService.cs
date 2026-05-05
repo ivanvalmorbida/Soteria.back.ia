@@ -55,7 +55,7 @@ public class PessoaJuridicaService : IPessoaJuridicaService
             Estado = dto.Estado,
             Cidade = dto.Cidade,
             Bairro = dto.Bairro,
-            Endereco = dto.EnderecoId,
+            Endereco = dto.Endereco,
             Numero = dto.Numero,
             Complemento = dto.Complemento,
             Obs = dto.Obs
@@ -70,7 +70,6 @@ public class PessoaJuridicaService : IPessoaJuridicaService
             Cnpj = dto.Cnpj,
             InscricaoEstadual = dto.InscricaoEstadual,
             Atividade = dto.Atividade,
-            Homepage = dto.Homepage,
             Representante = dto.Representante
         };
 
@@ -173,7 +172,6 @@ public class PessoaJuridicaService : IPessoaJuridicaService
             Cnpj = pessoaJuridica.Cnpj,
             InscricaoEstadual = pessoaJuridica.InscricaoEstadual,
             Atividade = pessoaJuridica.Atividade,
-            Homepage = pessoaJuridica.Homepage,
             Representante = pessoaJuridica.Representante,
             RepresentanteNome = representanteNome,
             Cep = pessoa.Cep,
@@ -183,7 +181,7 @@ public class PessoaJuridicaService : IPessoaJuridicaService
             CidadeNome = cidadeNome,
             Bairro = pessoa.Bairro,
             BairroNome = bairroNome,
-            EnderecoId = pessoa.Endereco,
+            Endereco = pessoa.Endereco,
             EnderecoNome = enderecoNome,
             Numero = pessoa.Numero,
             Complemento = pessoa.Complemento,
@@ -228,7 +226,7 @@ public class PessoaJuridicaService : IPessoaJuridicaService
         pessoa.Estado = dto.Estado;
         pessoa.Cidade = dto.Cidade;
         pessoa.Bairro = dto.Bairro;
-        pessoa.Endereco = dto.EnderecoId;
+        pessoa.Endereco = dto.Endereco;
         pessoa.Numero = dto.Numero;
         pessoa.Complemento = dto.Complemento;
         pessoa.Obs = dto.Obs;
@@ -242,7 +240,6 @@ public class PessoaJuridicaService : IPessoaJuridicaService
             pessoaJuridica.Cnpj = dto.Cnpj;
             pessoaJuridica.InscricaoEstadual = dto.InscricaoEstadual;
             pessoaJuridica.Atividade = dto.Atividade;
-            pessoaJuridica.Homepage = dto.Homepage;
             pessoaJuridica.Representante = dto.Representante;
 
             await _pessoaJuridicaRepository.UpdateAsync(pessoaJuridica);

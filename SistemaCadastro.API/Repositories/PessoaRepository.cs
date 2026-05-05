@@ -112,12 +112,12 @@ public class PessoaFisicaRepository : IPessoaFisicaRepository
     {
         using var connection = new MySqlConnection(_dbConfig.ConnectionString);
         
-        var sql = @"INSERT INTO tb_pessoa_fisica 
-                    (pessoa, nascimento, cidadenasc, ufnasc, nacionalidade, sexo, cpf, 
-                     identidade, orgaoidentidade, ufidentidade, estadocivil, conjuge, profissao, ctps, pis)
-                    VALUES 
-                    (@Pessoa, @Nascimento, @CidadeNasc, @UfNasc, @Nacionalidade, @Sexo, @Cpf, 
-                     @Identidade, @OrgaoIdentidade, @UfIdentidade, @EstadoCivil, @Conjuge, @Profissao, @Ctps, @Pis)";
+        var sql = @"INSERT INTO tb_pessoa_fisica
+                    (pessoa, nascimento, cidadenasc, ufnasc, nacionalidade, sexo, cpf,
+                     estadocivil, conjuge, profissao)
+                    VALUES
+                    (@Pessoa, @Nascimento, @CidadeNasc, @UfNasc, @Nacionalidade, @Sexo, @Cpf,
+                     @EstadoCivil, @Conjuge, @Profissao)";
         
         var result = await connection.ExecuteAsync(sql, pessoaFisica);
         return result;
@@ -150,12 +150,10 @@ public class PessoaFisicaRepository : IPessoaFisicaRepository
     {
         using var connection = new MySqlConnection(_dbConfig.ConnectionString);
         
-        var sql = @"UPDATE tb_pessoa_fisica 
-                    SET nascimento = @Nascimento, cidadenasc = @CidadeNasc, ufnasc = @UfNasc, 
-                        nacionalidade = @Nacionalidade, sexo = @Sexo, cpf = @Cpf, 
-                        identidade = @Identidade, orgaoidentidade = @OrgaoIdentidade, 
-                        ufidentidade = @UfIdentidade, estadocivil = @EstadoCivil, 
-                        conjuge = @Conjuge, profissao = @Profissao, ctps = @Ctps, pis = @Pis
+        var sql = @"UPDATE tb_pessoa_fisica
+                    SET nascimento = @Nascimento, cidadenasc = @CidadeNasc, ufnasc = @UfNasc,
+                        nacionalidade = @Nacionalidade, sexo = @Sexo, cpf = @Cpf,
+                        estadocivil = @EstadoCivil, conjuge = @Conjuge, profissao = @Profissao
                     WHERE pessoa = @Pessoa";
         
         var result = await connection.ExecuteAsync(sql, pessoaFisica);
@@ -186,10 +184,10 @@ public class PessoaJuridicaRepository : IPessoaJuridicaRepository
     {
         using var connection = new MySqlConnection(_dbConfig.ConnectionString);
         
-        var sql = @"INSERT INTO tb_pessoa_juridica 
-                    (Pessoa, razaosocial, cnpj, incricaoestadual, atividade, homepage, representante)
-                    VALUES 
-                    (@Pessoa, @RazaoSocial, @Cnpj, @InscricaoEstadual, @Atividade, @Homepage, @Representante)";
+        var sql = @"INSERT INTO tb_pessoa_juridica
+                    (Pessoa, razaosocial, cnpj, incricaoestadual, atividade, representante)
+                    VALUES
+                    (@Pessoa, @RazaoSocial, @Cnpj, @InscricaoEstadual, @Atividade, @Representante)";
         
         var result = await connection.ExecuteAsync(sql, pessoaJuridica);
         return result;

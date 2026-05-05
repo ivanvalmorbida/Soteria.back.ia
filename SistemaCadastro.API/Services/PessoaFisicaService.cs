@@ -48,7 +48,7 @@ public class PessoaFisicaService : IPessoaFisicaService
             Estado = dto.Estado,
             Cidade = dto.Cidade,
             Bairro = dto.Bairro,
-            Endereco = dto.EnderecoId,
+            Endereco = dto.Endereco,
             Numero = dto.Numero,
             Complemento = dto.Complemento,
             Obs = dto.Obs
@@ -60,16 +60,11 @@ public class PessoaFisicaService : IPessoaFisicaService
         {
             Pessoa = pessoaId,
             Cpf = dto.Cpf,
-            Identidade = dto.Identidade,
-            OrgaoIdentidade = dto.OrgaoIdentidade,
-            UfIdentidade = dto.UfIdentidade,
             Nascimento = dto.Nascimento,
             Sexo = dto.Sexo,
             EstadoCivil = dto.EstadoCivil,
             Nacionalidade = dto.Nacionalidade,
             Profissao = dto.Profissao,
-            Ctps = dto.Ctps,
-            Pis = dto.Pis,
             CidadeNasc = dto.CidadeNasc,
             UfNasc = dto.UfNasc,
             Conjuge = dto.Conjuge
@@ -171,17 +166,12 @@ public class PessoaFisicaService : IPessoaFisicaService
             Codigo = pessoa.Codigo,
             Nome = pessoa.Nome,
             Cpf = pessoaFisica.Cpf,
-            Identidade = pessoaFisica.Identidade,
-            OrgaoIdentidade = pessoaFisica.OrgaoIdentidade,
-            UfIdentidade = pessoaFisica.UfIdentidade,
             Nascimento = pessoaFisica.Nascimento,
             Sexo = pessoaFisica.Sexo,
             EstadoCivil = pessoaFisica.EstadoCivil,
             Nacionalidade = pessoaFisica.Nacionalidade,
             Profissao = pessoaFisica.Profissao,
             ProfissaoDescricao = profissaoDescricao,
-            Ctps = pessoaFisica.Ctps,
-            Pis = pessoaFisica.Pis,
             CidadeNasc = pessoaFisica.CidadeNasc,
             UfNasc = pessoaFisica.UfNasc,
             Cep = pessoa.Cep,
@@ -191,7 +181,7 @@ public class PessoaFisicaService : IPessoaFisicaService
             CidadeNome = cidadeNome,
             Bairro = pessoa.Bairro,
             BairroNome = bairroNome,
-            EnderecoId = pessoa.Endereco,
+            Endereco = pessoa.Endereco,
             EnderecoNome = enderecoNome,
             Numero = pessoa.Numero,
             Complemento = pessoa.Complemento,
@@ -227,7 +217,7 @@ public class PessoaFisicaService : IPessoaFisicaService
         pessoa.Estado = dto.Estado;
         pessoa.Cidade = dto.Cidade;
         pessoa.Bairro = dto.Bairro;
-        pessoa.Endereco = dto.EnderecoId;
+        pessoa.Endereco = dto.Endereco;
         pessoa.Numero = dto.Numero;
         pessoa.Complemento = dto.Complemento;
         pessoa.Obs = dto.Obs;
@@ -238,16 +228,11 @@ public class PessoaFisicaService : IPessoaFisicaService
         if (pessoaFisica != null)
         {
             pessoaFisica.Cpf = dto.Cpf;
-            pessoaFisica.Identidade = dto.Identidade;
-            pessoaFisica.OrgaoIdentidade = dto.OrgaoIdentidade;
-            pessoaFisica.UfIdentidade = dto.UfIdentidade;
             pessoaFisica.Nascimento = dto.Nascimento;
             pessoaFisica.Sexo = dto.Sexo;
             pessoaFisica.EstadoCivil = dto.EstadoCivil;
             pessoaFisica.Nacionalidade = dto.Nacionalidade;
             pessoaFisica.Profissao = dto.Profissao;
-            pessoaFisica.Ctps = dto.Ctps;
-            pessoaFisica.Pis = dto.Pis;
             pessoaFisica.CidadeNasc = dto.CidadeNasc;
             pessoaFisica.UfNasc = dto.UfNasc;
             pessoaFisica.Conjuge = dto.Conjuge;

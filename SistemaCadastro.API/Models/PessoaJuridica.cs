@@ -7,6 +7,5 @@ public class PessoaJuridica
     public string? Cnpj { get; set; }
     public string? InscricaoEstadual { get; set; }
     public int? Atividade { get; set; }
-    public string? Homepage { get; set; }
     public int? Representante { get; set; }
 }

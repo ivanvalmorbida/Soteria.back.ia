@@ -5,16 +5,11 @@ public class PessoaFisicaCreateDto
     // Dados Pessoais
     public string Nome { get; set; } = string.Empty;
     public string? Cpf { get; set; }
-    public string? Identidade { get; set; }
-    public string? OrgaoIdentidade { get; set; }
-    public int? UfIdentidade { get; set; }
     public DateTime? Nascimento { get; set; }
     public char? Sexo { get; set; }
     public int? EstadoCivil { get; set; }
     public int? Nacionalidade { get; set; }
     public int? Profissao { get; set; }
-    public string? Ctps { get; set; }
-    public string? Pis { get; set; }
     public int? CidadeNasc { get; set; }
     public int? UfNasc { get; set; }
     public int? Conjuge { get; set; }
@@ -24,7 +19,7 @@ public class PessoaFisicaCreateDto
     public int? Estado { get; set; }
     public int? Cidade { get; set; }
     public int? Bairro { get; set; }
-    public int? EnderecoId { get; set; }
+    public int? Endereco { get; set; }
     public string? Numero { get; set; }
     public string? Complemento { get; set; }
 
@@ -41,16 +36,11 @@ public class PessoaFisicaUpdateDto
     public int Codigo { get; set; }
     public string Nome { get; set; } = string.Empty;
     public string? Cpf { get; set; }
-    public string? Identidade { get; set; }
-    public string? OrgaoIdentidade { get; set; }
-    public int? UfIdentidade { get; set; }
     public DateTime? Nascimento { get; set; }
     public char? Sexo { get; set; }
     public int? EstadoCivil { get; set; }
     public int? Nacionalidade { get; set; }
     public int? Profissao { get; set; }
-    public string? Ctps { get; set; }
-    public string? Pis { get; set; }
     public int? CidadeNasc { get; set; }
     public int? UfNasc { get; set; }
     public int? Conjuge { get; set; }
@@ -58,7 +48,7 @@ public class PessoaFisicaUpdateDto
     public int? Estado { get; set; }
     public int? Cidade { get; set; }
     public int? Bairro { get; set; }
-    public int? EnderecoId { get; set; }
+    public int? Endereco { get; set; }
     public string? Numero { get; set; }
     public string? Complemento { get; set; }
     public List<TelefoneCreateDto>? Telefones { get; set; }
@@ -71,17 +61,12 @@ public class PessoaFisicaDto
     public int Codigo { get; set; }
     public string? Nome { get; set; }
     public string? Cpf { get; set; }
-    public string? Identidade { get; set; }
-    public string? OrgaoIdentidade { get; set; }
-    public int? UfIdentidade { get; set; }
     public DateTime? Nascimento { get; set; }
     public char? Sexo { get; set; }
     public int? EstadoCivil { get; set; }
     public int? Nacionalidade { get; set; }
     public int? Profissao { get; set; }
     public string? ProfissaoDescricao { get; set; }
-    public string? Ctps { get; set; }
-    public string? Pis { get; set; }
     public int? CidadeNasc { get; set; }
     public int? UfNasc { get; set; }
     public string? Cep { get; set; }
@@ -91,7 +76,7 @@ public class PessoaFisicaDto
     public string? CidadeNome { get; set; }
     public int? Bairro { get; set; }
     public string? BairroNome { get; set; }
-    public int? EnderecoId { get; set; }
+    public int? Endereco { get; set; }
     public string? EnderecoNome { get; set; }
     public string? Numero { get; set; }
     public string? Complemento { get; set; }

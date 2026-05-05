@@ -8,7 +8,6 @@ public class PessoaJuridicaCreateDto
     public string? Cnpj { get; set; }
     public string? InscricaoEstadual { get; set; }
     public int? Atividade { get; set; }
-    public string? Homepage { get; set; }
     public int? Representante { get; set; }
 
     // Endereço
@@ -16,7 +15,7 @@ public class PessoaJuridicaCreateDto
     public int? Estado { get; set; }
     public int? Cidade { get; set; }
     public int? Bairro { get; set; }
-    public int? EnderecoId { get; set; }
+    public int? Endereco { get; set; }
     public string? Numero { get; set; }
     public string? Complemento { get; set; }
 
@@ -36,13 +35,12 @@ public class PessoaJuridicaUpdateDto
     public string? Cnpj { get; set; }
     public string? InscricaoEstadual { get; set; }
     public int? Atividade { get; set; }
-    public string? Homepage { get; set; }
     public int? Representante { get; set; }
     public string? Cep { get; set; }
     public int? Estado { get; set; }
     public int? Cidade { get; set; }
     public int? Bairro { get; set; }
-    public int? EnderecoId { get; set; }
+    public int? Endereco { get; set; }
     public string? Numero { get; set; }
     public string? Complemento { get; set; }
     public List<TelefoneCreateDto>? Telefones { get; set; }
@@ -59,7 +57,6 @@ public class PessoaJuridicaDto
     public string? InscricaoEstadual { get; set; }
     public int? Atividade { get; set; }
     public string? AtividadeDescricao { get; set; }
-    public string? Homepage { get; set; }
     public int? Representante { get; set; }
     public string? RepresentanteNome { get; set; }
     public string? Cep { get; set; }
@@ -69,7 +66,7 @@ public class PessoaJuridicaDto
     public string? CidadeNome { get; set; }
     public int? Bairro { get; set; }
     public string? BairroNome { get; set; }
-    public int? EnderecoId { get; set; }
+    public int? Endereco { get; set; }
     public string? EnderecoNome { get; set; }
     public string? Numero { get; set; }
     public string? Complemento { get; set; }
