@@ -97,6 +97,7 @@ builder.Services.AddScoped<ICentroCustoRepository, CentroCustoRepository>();
 builder.Services.AddScoped<IHistoricoContabilRepository, HistoricoContabilRepository>();
 builder.Services.AddScoped<ILanctoContabilRepository, LanctoContabilRepository>();
 builder.Services.AddScoped<IPlanoContaRepository, PlanoContaRepository>();
+builder.Services.AddScoped<IHospedagemRepository, HospedagemRepository>();
 
 // Services
 builder.Services.AddScoped<IPessoaService, PessoaService>();
@@ -107,6 +108,7 @@ builder.Services.AddScoped<ICentroCustoService, CentroCustoService>();
 builder.Services.AddScoped<IHistoricoContabilService, HistoricoContabilService>();
 builder.Services.AddScoped<ILanctoContabilService, LanctoContabilService>();
 builder.Services.AddScoped<IPlanoContaService, PlanoContaService>();
+builder.Services.AddScoped<IHospedagemService, HospedagemService>();
 
 // FluentValidation
 builder.Services.AddFluentValidationAutoValidation();

@@ -108,3 +108,17 @@ public class PlanoConta
     public string Rotulo { get; set; } = string.Empty;
     public string Descricao { get; set; } = string.Empty;
 }
+
+public class Hospedagem
+{
+    public int Codigo { get; set; }
+    public int Pessoa { get; set; }
+    public string Quarto { get; set; } = string.Empty;
+    public DateTime Checkin { get; set; }
+    public DateTime? Checkout { get; set; }
+    public decimal Diaria { get; set; }
+    public decimal? Total { get; set; }
+    public string? Status { get; set; }
+    public string? Observacoes { get; set; }
+    public DateTime? Cadastrado { get; set; }
+}
