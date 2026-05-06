@@ -106,7 +106,7 @@ public class HospedagemService : IHospedagemService
     {
         Codigo = hospedagem.Codigo,
         Pessoa = hospedagem.Pessoa,
-        PessoaNome = string.Empty,
+        PessoaNome = hospedagem.PessoaNome,
         Quarto = hospedagem.Quarto,
         Checkin = hospedagem.Checkin,
         Checkout = hospedagem.Checkout,

@@ -18,7 +18,11 @@ public class HospedagemRepository : IHospedagemRepository
     {
         using var connection = new MySqlConnection(_dbConfig.ConnectionString);
 
-        var sql = "SELECT Codigo, Pessoa, Quarto, Checkin, Checkout, Diaria, Total, Status, Observacoes, Cadastrado FROM tb_hospedagens ORDER BY Checkin DESC";
+        var sql = @"SELECT h.Codigo, h.Pessoa, p.Nome AS PessoaNome, h.Quarto, h.Checkin, h.Checkout, 
+                           h.Diaria, h.Total, h.Status, h.Observacoes, h.Cadastrado 
+                    FROM tb_hospedagens h 
+                    LEFT JOIN tb_pessoa p ON p.Codigo = h.Pessoa 
+                    ORDER BY h.Checkin DESC";
         return await connection.QueryAsync<Hospedagem>(sql);
     }
 
@@ -26,7 +30,11 @@ public class HospedagemRepository : IHospedagemRepository
     {
         using var connection = new MySqlConnection(_dbConfig.ConnectionString);
 
-        var sql = "SELECT Codigo, Pessoa, Quarto, Checkin, Checkout, Diaria, Total, Status, Observacoes, Cadastrado FROM tb_hospedagens WHERE Codigo = @Codigo";
+        var sql = @"SELECT h.Codigo, h.Pessoa, p.Nome AS PessoaNome, h.Quarto, h.Checkin, h.Checkout, 
+                           h.Diaria, h.Total, h.Status, h.Observacoes, h.Cadastrado 
+                    FROM tb_hospedagens h 
+                    LEFT JOIN tb_pessoa p ON p.Codigo = h.Pessoa 
+                    WHERE h.Codigo = @Codigo";
         return await connection.QueryFirstOrDefaultAsync<Hospedagem>(sql, new { Codigo = codigo });
     }
 
@@ -34,7 +42,11 @@ public class HospedagemRepository : IHospedagemRepository
     {
         using var connection = new MySqlConnection(_dbConfig.ConnectionString);
 
-        var sql = "SELECT Codigo, Pessoa, Quarto, Checkin, Checkout, Diaria, Total, Status, Observacoes, Cadastrado FROM tb_hospedagens WHERE Pessoa = @PessoaId ORDER BY Checkin DESC";
+        var sql = @"SELECT h.Codigo, h.Pessoa, p.Nome AS PessoaNome, h.Quarto, h.Checkin, h.Checkout, 
+                           h.Diaria, h.Total, h.Status, h.Observacoes, h.Cadastrado 
+                    FROM tb_hospedagens h 
+                    LEFT JOIN tb_pessoa p ON p.Codigo = h.Pessoa 
+                    WHERE h.Pessoa = @PessoaId ORDER BY h.Checkin DESC";
         return await connection.QueryAsync<Hospedagem>(sql, new { PessoaId = pessoaId });
     }
 
@@ -42,7 +54,11 @@ public class HospedagemRepository : IHospedagemRepository
     {
         using var connection = new MySqlConnection(_dbConfig.ConnectionString);
 
-        var sql = "SELECT Codigo, Pessoa, Quarto, Checkin, Checkout, Diaria, Total, Status, Observacoes, Cadastrado FROM tb_hospedagens WHERE Status = @Status ORDER BY Checkin DESC";
+        var sql = @"SELECT h.Codigo, h.Pessoa, p.Nome AS PessoaNome, h.Quarto, h.Checkin, h.Checkout, 
+                           h.Diaria, h.Total, h.Status, h.Observacoes, h.Cadastrado 
+                    FROM tb_hospedagens h 
+                    LEFT JOIN tb_pessoa p ON p.Codigo = h.Pessoa 
+                    WHERE h.Status = @Status ORDER BY h.Checkin DESC";
         return await connection.QueryAsync<Hospedagem>(sql, new { Status = status });
     }
 
