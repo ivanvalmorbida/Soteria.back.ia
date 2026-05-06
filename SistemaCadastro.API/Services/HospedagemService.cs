@@ -89,8 +89,8 @@ public class HospedagemService : IHospedagemService
         if (diaria <= 0)
             throw new ArgumentException("O valor da diária deve ser maior que zero.");
 
-        if (checkin > DateTime.Now)
-            throw new ArgumentException("A data de check-in não pode ser futura.");
+        // if (checkin > DateTime.Now)
+        //     throw new ArgumentException("A data de check-in não pode ser futura.");
     }
 
     private static string ValidarStatus(string? status)
